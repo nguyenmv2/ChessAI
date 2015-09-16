@@ -14,7 +14,7 @@ public class SearchTest {
 
 	@Test
 	public void test1() throws IllegalMoveException {
-		testBasicMate(new Minimax());
+		testBasicMate(new AlphaBeta());
 	}
 
 	public void testBasicMate(Searcher s) throws IllegalMoveException {

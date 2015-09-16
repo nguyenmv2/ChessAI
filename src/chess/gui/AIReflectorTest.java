@@ -12,7 +12,7 @@ public class AIReflectorTest {
 	@Test
 	public void test() {
 		AIReflector<Searcher> searchers = new AIReflector<Searcher>(Searcher.class, "edu.hendrix.chess.ai");
-		assertEquals("Available: AlphaBeta Minimax OrderedAlphaBeta OrderedCachingAlphaBeta", searchers.toString());
+		assertEquals("Available: AlphaBeta AlphaBeta OrderedAlphaBeta OrderedCachingAlphaBeta", searchers.toString());
 	}
 
 }
