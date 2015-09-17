@@ -26,7 +26,7 @@ public class AlphaBeta extends Searcher {
 			}
 			if(alpha >= beta){
 				best = result;
-				break;
+				
 			}
 		}
 		return best;
