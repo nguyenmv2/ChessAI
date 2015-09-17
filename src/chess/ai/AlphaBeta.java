@@ -7,8 +7,7 @@ public class AlphaBeta extends Searcher {
 	@Override
 	public MoveScore findBestMove(Chessboard board, BoardEval eval, int depth) {
 		setup(board, eval, depth);
-		MoveScore result = evalMoves(board, eval, depth,-1,1);
-		System.out.println("Result "+result.getScore() + result.getMove());
+		MoveScore result = evalMoves(board, eval, depth,1,-1);
 		tearDown();
 		return result;
 	}
@@ -26,18 +25,20 @@ public class AlphaBeta extends Searcher {
 				beta = result.getScore();
 			}
 			if(alpha >= beta){
-				best = new MoveScore(alpha, m);
-				break;
-
+				best = result;
+				
 			}
 		}
-
 		return best;
 
 	}	
 	
 	int evalBoard(Chessboard board, BoardEval eval, int depth,int alpha, int beta) {
-		if (depth == 0) {
+		if (!board.hasKing(board.getMoverColor()) || board.isCheckmate()) {
+			return -eval.maxValue();
+		} else if (board.isStalemate()) {
+			return 0;
+		} else if (depth == 0) {
 			return evaluate(board, eval);
 		} else {
 			return evalMoves(board, eval, depth,alpha,beta).getScore();
