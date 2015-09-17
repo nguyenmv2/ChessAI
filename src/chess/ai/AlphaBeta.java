@@ -16,13 +16,12 @@ public class AlphaBeta extends Searcher {
 		MoveScore best = null;
 		for (Move m: board.getLegalMoves()) {
 			Chessboard next = generate(board, m);
-			MoveScore result = new MoveScore(-evalBoard(next, eval, depth - 1, beta, alpha), m);
+			MoveScore result = new MoveScore(-evalBoard(next, eval, depth - 1, -beta, -alpha), m);
 			if(alpha < result.getScore()) {
 				alpha = result.getScore();
-				result = new MoveScore(alpha,m);
+				best = new MoveScore(alpha,m);
 			}
 			if(alpha >= beta){
-				result = new MoveScore(alpha, m);
 				break;
 			}
 			if (best == null || best.getScore() < result.getScore()) best = result;
@@ -36,7 +35,7 @@ public class AlphaBeta extends Searcher {
 		if (depth == 0) {
 			return evaluate(board, eval);
 		} else {
-			return evalMoves(board, eval, depth,beta,alpha).getScore();
+			return evalMoves(board, eval, depth,alpha,beta).getScore();
 		}
 	}
 
