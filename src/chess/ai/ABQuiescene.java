@@ -24,10 +24,11 @@ public class ABQuiescene extends Searcher {
 				alpha = result.getScore();
 				best = new MoveScore(alpha,m);
 			}
+            if (best == null || best.getScore() < result.getScore()) best = result;
 			if(alpha >= beta){
 				break;
 			}
-			if (best == null || best.getScore() < result.getScore()) best = result;
+
 		}
 
 		return best;

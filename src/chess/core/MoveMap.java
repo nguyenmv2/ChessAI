@@ -202,9 +202,9 @@ public class MoveMap {
 	
 	private void addPawnAdvances(ArrayList<Move> result) {
 		for (BoardSquare stop: pawnAdvances) {
-			BoardSquare start = stop.pawnAdvanceFrom(board.getOpponentColor());
+			BoardSquare start = stop.pawnAdvanceFrom(mover.other());
 			if (stop.pawnJumpTarget(mover) && board.at(start) == ChessPiece.EMPTY) {
-				start = start.pawnAdvanceFrom(board.getOpponentColor());
+				start = start.pawnAdvanceFrom(mover.other());
 			} 
 			
 			if (stop.pawnEnd(mover)) {
