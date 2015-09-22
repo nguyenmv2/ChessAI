@@ -8,9 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-/**
- * Created by Hoa Dam on 9/22/2015.
- */
+
 public class TheWholeShebang extends Searcher {
     @Override
 	public MoveScore findBestMove(Chessboard board, BoardEval eval, int depth) {
@@ -22,27 +20,28 @@ public class TheWholeShebang extends Searcher {
 
 	MoveScore evalMoves(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		MoveScore best = null;
-		List<Move> moveList = board.getLegalMoves();
-		PriorityQueue<MyMoveScore> moveOrder = new PriorityQueue<>(moveList.size(), new MoveScoreComparator());
-		for (Move m : board.getLegalMoves()){
-			Chessboard next= generate(board, m);
-			MyMoveScore score = new MyMoveScore(evaluate(next, eval),m,next);
-			moveOrder.add(score);
-		}
-
-		while (!moveOrder.isEmpty()){
-			MyMoveScore m = moveOrder.poll();
-			MoveScore result = new MoveScore(-evalBoard(m.getBoard(), eval, depth - 1, -beta, -alpha), m.getMove());
-			if(alpha < result.getScore()) {
-				alpha = result.getScore();
-				best = new MoveScore(alpha,m.getMove());
+		if(board.getLegalMoves().size() > 0) {
+			List<Move> moveList = board.getLegalMoves();
+			PriorityQueue<MyMoveScore> moveOrder = new PriorityQueue<>(moveList.size(), new MoveScoreComparator());
+			for (Move m : board.getLegalMoves()) {
+				Chessboard next = generate(board, m);
+				MyMoveScore score = new MyMoveScore(evaluate(next, eval), m, next);
+				moveOrder.add(score);
 			}
-			if(alpha >= beta){
-				break;
-			}
-			if (best == null || best.getScore() < result.getScore()) best = result;
-		}
 
+			while (!moveOrder.isEmpty()) {
+				MyMoveScore m = moveOrder.poll();
+				MoveScore result = new MoveScore(-evalBoard(m.getBoard(), eval, depth - 1, -beta, -alpha), m.getMove());
+				if (alpha < result.getScore()) {
+					alpha = result.getScore();
+					best = new MoveScore(alpha, m.getMove());
+				}
+				if (alpha >= beta) {
+					break;
+				}
+				if (best == null || best.getScore() < result.getScore()) best = result;
+			}
+		}
 		return best;
 		}
 
@@ -54,7 +53,9 @@ public class TheWholeShebang extends Searcher {
 		}
 		if (depth == 0) return quiescene(board, eval, alpha, beta);
 		else {
-			return evalMoves(board, eval, depth,alpha,beta).getScore();
+			MoveScore best = evalMoves(board, eval, depth, alpha, beta);
+			if(best != null )return best.getScore();
+			return evaluate(board, eval);
 		}
 	}
 	int quiescene(Chessboard board, BoardEval eval, int alpha, int beta){
@@ -74,7 +75,7 @@ public class TheWholeShebang extends Searcher {
 				if (score > alpha) alpha = score;
 			}
 		}
-			return beta;
+		return beta;
 	}
 
 	class MoveScoreComparator implements Comparator<MyMoveScore> {
