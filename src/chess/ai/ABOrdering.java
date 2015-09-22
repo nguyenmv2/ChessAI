@@ -48,6 +48,9 @@ public class ABOrdering extends Searcher{
 
 
 	int evalBoard(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
+		if (  board.isCheckmate()) {
+			return eval.maxValue();
+		}
 		if (depth == 0) {
 			return evaluate(board, eval);
 		} else {

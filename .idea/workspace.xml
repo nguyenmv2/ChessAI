@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdfdcb46-85bb-4bed-a040-dde75d230663" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/chess/ai/MyMoveScore.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/ai/ABOrdering.java" afterPath="$PROJECT_DIR$/src/chess/ai/ABOrdering.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/ai/ABQuiescene.java" afterPath="$PROJECT_DIR$/src/chess/ai/ABQuiescene.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/chess/ai/SingularExtension.java" afterPath="$PROJECT_DIR$/src/chess/ai/SingularExtension.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Chess.iws" />
@@ -37,8 +34,8 @@
       <file leaf-file-name="ABOrdering.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/chess/ai/ABOrdering.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.55879587">
+              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -126,7 +123,7 @@
         <entry file="file://$PROJECT_DIR$/src/chess/ai/ABQuiescene.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+              <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -639,7 +636,7 @@
       <workItem from="1442463668528" duration="337000" />
       <workItem from="1442513454305" duration="4659000" />
       <workItem from="1442885904232" duration="3562000" />
-      <workItem from="1442939802437" duration="6700000" />
+      <workItem from="1442939802437" duration="6750000" />
     </task>
     <task id="LOCAL-00001" summary="Add quiescene search">
       <created>1442886503939</created>
@@ -665,11 +662,17 @@
       <option name="project" value="LOCAL" />
       <updated>1442947617402</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fixed Ordering Search">
+      <created>1442948169076</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1442948169076</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20197000" />
+    <option name="totallyTimeSpent" value="20247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1242" extended-state="6" />
@@ -744,7 +747,8 @@
     <MESSAGE value="Add quiescene search" />
     <MESSAGE value="Add Ordering Search + Split Quiescene and AlphaBeta" />
     <MESSAGE value="fixed Quiescene Search" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed Quiescene Search" />
+    <MESSAGE value="fixed Ordering Search" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed Ordering Search" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1165,15 +1169,15 @@
     <entry file="file://$PROJECT_DIR$/src/chess/ai/ABQuiescene.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+          <caret line="38" column="8" selection-start-line="38" selection-start-column="8" selection-end-line="38" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/chess/ai/ABOrdering.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.55879587">
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
