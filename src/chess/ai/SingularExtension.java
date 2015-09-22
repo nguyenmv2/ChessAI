@@ -3,7 +3,7 @@ package chess.ai;
 import chess.core.Chessboard;
 import chess.core.Move;
 
-public class AlphaBeta extends Searcher {
+public class SingularExtension extends Searcher {
 	@Override
 	public MoveScore findBestMove(Chessboard board, BoardEval eval, int depth) {
 		setup(board, eval, depth);
@@ -14,6 +14,7 @@ public class AlphaBeta extends Searcher {
 
 	MoveScore evalMoves(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		MoveScore best = null;
+        double average = 0;
 		for (Move m: board.getLegalMoves()) {
 			Chessboard next = generate(board, m);
 			MoveScore result = new MoveScore(-evalBoard(next, eval, depth - 1, -beta, -alpha), m);
