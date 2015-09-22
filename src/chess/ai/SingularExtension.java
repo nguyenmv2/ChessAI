@@ -2,12 +2,8 @@ package chess.ai;
 
 import chess.core.Chessboard;
 import chess.core.Move;
-import chess.gui.Chess;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class AlphaBeta extends Searcher {
+public class SingularExtension extends Searcher {
 	@Override
 	public MoveScore findBestMove(Chessboard board, BoardEval eval, int depth) {
 		setup(board, eval, depth);
@@ -18,6 +14,7 @@ public class AlphaBeta extends Searcher {
 
 	MoveScore evalMoves(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		MoveScore best = null;
+        double average = 0;
 		for (Move m: board.getLegalMoves()) {
 			Chessboard next = generate(board, m);
 			MoveScore result = new MoveScore(-evalBoard(next, eval, depth - 1, -beta, -alpha), m);
@@ -37,27 +34,11 @@ public class AlphaBeta extends Searcher {
 	
 	int evalBoard(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		if (depth == 0) {
-//			return evaluate(board, eval);
-			return quiescene(board,eval,alpha,beta);
+			return evaluate(board, eval);
 		} else {
 			return evalMoves(board, eval, depth,alpha,beta).getScore();
 		}
 	}
-	int quiescene(Chessboard board, BoardEval eval, int alpha, int beta){
-		int standingVal =evaluate(board, eval);
-		if (standingVal >= beta) return beta;
-		if (standingVal > alpha) alpha = standingVal;
-		List<Move> capturable = new ArrayList<>();
-		for (Move m: board.getLegalMoves()){
-			if(m.getCapture() != null) capturable.add(m);
-		}
-		for (Move mv : capturable){
-			Chessboard next = generate(board, mv);
-			int score = quiescene(board, eval, -beta, -alpha);
-			if (score >= beta) return beta;
-			if (score > alpha) alpha = score;
-		}
-		return alpha;
-	}
+
 
 }
