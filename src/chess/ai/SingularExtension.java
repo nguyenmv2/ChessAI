@@ -54,7 +54,9 @@ public class SingularExtension extends Searcher {
 	}	
 	
 	int evalBoard(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
-
+        if (board.getLegalMoves().size() == 0 || board.isCheckmate()) {
+                return -eval.maxValue();
+        }
 		if (depth == 0) {
 			return evaluate(board, eval);
 		} else {

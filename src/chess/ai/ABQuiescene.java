@@ -37,9 +37,6 @@ public class ABQuiescene extends Searcher {
 	
 	int evalBoard(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		if (  board.isCheckmate()) {
-
-			System.out.println("Illegal board");
-			System.out.println(board.toString());
 			return eval.maxValue();
 		}
 		if (depth == 0) return quiescene(board, eval, alpha, beta);

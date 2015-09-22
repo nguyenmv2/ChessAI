@@ -23,20 +23,19 @@ public class ABOrdering extends Searcher{
 	MoveScore evalMoves(Chessboard board, BoardEval eval, int depth, int alpha, int beta) {
 		MoveScore best = null;
 		List<Move> moveList = board.getLegalMoves();
-		PriorityQueue<MoveScore> moveOrder = new PriorityQueue<>(moveList.size(), new MoveScoreComparator());
+		PriorityQueue<MyMoveScore> moveOrder = new PriorityQueue<>(moveList.size(), new MoveScoreComparator());
 		for (Move m : board.getLegalMoves()){
 			Chessboard next= generate(board, m);
-			MoveScore score = new MoveScore(evaluate(next, eval),m);
+			MyMoveScore score = new MyMoveScore(evaluate(next, eval),m,next);
 			moveOrder.add(score);
 		}
 
 		while (!moveOrder.isEmpty()){
-			Move m = moveOrder.poll().getMove();
-			Chessboard next = generate(board, m);
-			MoveScore result = new MoveScore(-evalBoard(next, eval, depth - 1, -beta, -alpha), m);
+			MyMoveScore m = moveOrder.poll();
+			MoveScore result = new MoveScore(-evalBoard(m.getBoard(), eval, depth - 1, -beta, -alpha), m.getMove());
 			if(alpha < result.getScore()) {
 				alpha = result.getScore();
-				best = new MoveScore(alpha,m);
+				best = new MoveScore(alpha,m.getMove());
 			}
 			if(alpha >= beta){
 				break;
@@ -57,9 +56,9 @@ public class ABOrdering extends Searcher{
 		}
 	}
 
-	class MoveScoreComparator implements Comparator<MoveScore>{
+	class MoveScoreComparator implements Comparator<MyMoveScore>{
 		@Override
-		public int compare(MoveScore x, MoveScore y) {
+		public int compare(MyMoveScore x, MyMoveScore y) {
 			if(x.getScore() < y.getScore()) return -1;
 			if(x.getScore() > y.getScore()) return 1;
 			return 0;
